@@ -7,25 +7,34 @@ Wymagane są:
 - CMake
 - Ninja
 - arm toolchain (gcc-arm-none-eabi)
+- googletest
 
 ## Budowanie i kompilacja projektu
 
 Setup:
 
 ```shell
-cmake -S . -B build -G Ninja -DCMAKE_TOOLCHAIN_FILE="cmake/arm-gcc-toolchain.cmake"
+cmake -B build-host -S . -G Ninja
+cmake -B build-arm-none-eabi -S . -G Ninja -DCMAKE_TOOLCHAIN_FILE="cmake/arm-gcc-toolchain.cmake"
 ```
 
 Build:
 
 ```shell
-ninja -C build
+cmake --build build-host
+cmake --build build-arm-none-eabi
+```
+
+Test:
+
+```shell
+ctest --test-dir build-host
 ```
 
 Program:
 
 ```shell
-ninja -C build program
+ninja -C build-arm-none-eabi program
 ```
 
 ## Environmental variables (Windows example)

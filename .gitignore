@@ -1,0 +1,11 @@
+.settings/
+Debug/
+build/
+build-*/
+
+.cproject
+.mxproject
+.project
+*.launch
+
+.vscode
